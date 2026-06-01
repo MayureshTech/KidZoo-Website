@@ -1,0 +1,196 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Font families */
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-plus-jakarta);
+  
+  /* Brand Colors */
+  --color-pink-primary: #E83E8C;
+  --color-pink-light: #FDE8F2;
+  --color-pink-dark: #D11A6F;
+  
+  --color-teal-primary: #0D9488;
+  --color-teal-light: #E0F2F1;
+  --color-teal-dark: #0B7A71;
+  
+  /* Neutral Colors */
+  --color-dark: #0F172A;
+  --color-gray-900: #1E293B;
+  --color-gray-800: #334155;
+  --color-gray-600: #475569;
+  --color-gray-400: #94A3B8;
+  --color-gray-300: #CBD5E1;
+  --color-gray-200: #E2E8F0;
+  --color-gray-100: #F1F5F9;
+  --color-cream: #FDF8F5;
+  
+  /* App-specific accent colors */
+  --color-accent-events: #D946EF;
+  --color-accent-camp: #8B5CF6;
+  --color-accent-activities: #06B6D4;
+  --color-accent-market: #F59E0B;
+  --color-accent-childcare: #10B981;
+  --color-accent-venues: #6366F1;
+  --color-accent-parties: #EC4899;
+  --color-accent-cakes: #F97316;
+  
+  /* Shadows */
+  --shadow-card: 0 4px 24px rgba(15, 23, 42, 0.06);
+  --shadow-card-hover: 0 8px 32px rgba(15, 23, 42, 0.1);
+  --shadow-button: 0 2px 8px rgba(232, 62, 140, 0.25);
+  --shadow-nav: 0 2px 16px rgba(15, 23, 42, 0.05);
+  
+  /* Border radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #0F172A;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-gray-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gray-300);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gray-400);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(135deg, #E83E8C 0%, #0D9488 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Gradient backgrounds */
+.gradient-hero {
+  background: linear-gradient(135deg, #E83E8C 0%, #0D9488 100%);
+}
+
+.gradient-soft {
+  background: linear-gradient(180deg, #FDE8F2 0%, #E0F2F1 100%);
+}
+
+.gradient-dark {
+  background: linear-gradient(180deg, #0F172A 0%, #1E293B 100%);
+}
+
+/* Animated gradient orbs */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.orb-pink {
+  background: radial-gradient(circle, #E83E8C 0%, transparent 70%);
+}
+
+.orb-teal {
+  background: radial-gradient(circle, #0D9488 0%, transparent 70%);
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes drift {
+  0%, 100% {
+    transform: translateX(0px) scale(1);
+  }
+  50% {
+    transform: translateX(20px) scale(1.1);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-drift {
+  animation: drift 8s ease-in-out infinite;
+}
+
+/* Phone mockup styles */
+.phone-mockup {
+  border: 12px solid #0F172A;
+  border-radius: 40px;
+  overflow: hidden;
+  position: relative;
+  background: white;
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.phone-mockup::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40%;
+  height: 24px;
+  background: #0F172A;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  z-index: 10;
+}
+
+/* Scrollbar hide utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

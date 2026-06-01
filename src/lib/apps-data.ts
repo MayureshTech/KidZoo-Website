@@ -1,0 +1,161 @@
+export interface AppData {
+  id: string;
+  name: string;
+  shortName: string;
+  description: string;
+  longDescription: string;
+  color: string;
+  lightColor: string;
+  slug: string;
+  downloadLink: string | null;
+  appStoreLink: string | null;
+  hasScreenshots: boolean;
+  isPlaceholder: boolean;
+  teaserFeatures?: string[];
+}
+
+export const apps: AppData[] = [
+  {
+    id: "playdates",
+    name: "KidZoo Playdates",
+    shortName: "Playdates",
+    description: "Set up playdates for your children in 30 seconds.",
+    longDescription: "KidZoo is a mobile application that helps parents set up playdates for their children very easily. With KidZoo, you don't need to call or text multiple people to find a playdate for your child. All their availability is right there, so you can save hours of back and forth messaging and just set a playdate in 30 seconds.",
+    color: "#E83E8C",
+    lightColor: "#FDE8F2",
+    slug: "/playdates",
+    downloadLink: "https://play.google.com/store/apps/details?id=com.kidzoo.kidzoo&pcampaignid=web_share",
+    appStoreLink: null,
+    hasScreenshots: true,
+    isPlaceholder: false,
+    teaserFeatures: [
+      "Set a playdate in 30 seconds",
+      "See who's available right now",
+      "Connect with school friends",
+      "Safe & secure for families",
+    ],
+  },
+  {
+    id: "events",
+    name: "KidZoo Events",
+    shortName: "Events",
+    description: "Discover and book kid-friendly events in your neighborhood.",
+    longDescription: "Discover and book kid-friendly events, workshops, and activities happening right in your neighborhood. From weekend carnivals to educational workshops, find the perfect events for your little ones.",
+    color: "#D946EF",
+    lightColor: "#FAE8FD",
+    slug: "/events",
+    downloadLink: null,
+    appStoreLink: null,
+    hasScreenshots: false,
+    isPlaceholder: true,
+  },
+  {
+    id: "camp",
+    name: "KidZoo Camp",
+    shortName: "Camp",
+    description: "Find and register for summer camps and after-school programs.",
+    longDescription: "Find and register for summer camps, holiday camps, and after-school programs near you. Browse reviews, compare options, and book your child's next adventure with ease.",
+    color: "#8B5CF6",
+    lightColor: "#F3E8FF",
+    slug: "/camp",
+    downloadLink: null,
+    appStoreLink: null,
+    hasScreenshots: false,
+    isPlaceholder: true,
+  },
+  {
+    id: "activities",
+    name: "KidZoo Activities",
+    shortName: "Activities",
+    description: "Explore fun activities and classes for kids of all ages.",
+    longDescription: "Explore a world of fun activities and classes for kids of all ages. From art workshops to sports clinics, discover activities that spark joy and creativity in your child.",
+    color: "#06B6D4",
+    lightColor: "#E0F7FA",
+    slug: "/activities",
+    downloadLink: null,
+    appStoreLink: null,
+    hasScreenshots: false,
+    isPlaceholder: true,
+  },
+  {
+    id: "market",
+    name: "KidZoo Market",
+    shortName: "Market",
+    description: "Buy and sell gently used kids' items in your community.",
+    longDescription: "Buy and sell gently used kids' items, toys, clothes, and gear in your trusted community. Connect with local parents and give pre-loved items a second life.",
+    color: "#F59E0B",
+    lightColor: "#FEF3C7",
+    slug: "/market",
+    downloadLink: null,
+    appStoreLink: null,
+    hasScreenshots: false,
+    isPlaceholder: true,
+  },
+  {
+    id: "childcare",
+    name: "KidZoo ChildCare",
+    shortName: "ChildCare",
+    description: "Find trusted babysitters and childcare providers nearby.",
+    longDescription: "Find trusted babysitters, nannies, and childcare providers in your neighborhood. Read reviews, check availability, and book reliable care for your little ones.",
+    color: "#10B981",
+    lightColor: "#D1FAE5",
+    slug: "/childcare",
+    downloadLink: null,
+    appStoreLink: null,
+    hasScreenshots: false,
+    isPlaceholder: true,
+  },
+  {
+    id: "venues",
+    name: "KidZoo Venues",
+    shortName: "Venues",
+    description: "Discover kid-friendly venues and party places near you.",
+    longDescription: "Discover kid-friendly venues, party places, playgrounds, and activity centers near you. Browse photos, read reviews, and book the perfect spot for your next outing.",
+    color: "#6366F1",
+    lightColor: "#E0E7FF",
+    slug: "/venues",
+    downloadLink: null,
+    appStoreLink: null,
+    hasScreenshots: false,
+    isPlaceholder: true,
+  },
+  {
+    id: "parties",
+    name: "KidZoo Parties",
+    shortName: "Parties",
+    description: "Plan unforgettable birthday parties and celebrations.",
+    longDescription: "Plan unforgettable birthday parties and celebrations for your children. From theme ideas to vendor bookings, make every party a magical experience.",
+    color: "#EC4899",
+    lightColor: "#FCE7F3",
+    slug: "/parties",
+    downloadLink: null,
+    appStoreLink: null,
+    hasScreenshots: false,
+    isPlaceholder: true,
+  },
+  {
+    id: "cakes",
+    name: "KidZoo Cakes",
+    shortName: "Cakes",
+    description: "Order custom cakes and treats from local bakers.",
+    longDescription: "Order custom cakes, cupcakes, and treats from talented local bakers. Browse designs, customize flavors, and make every celebration sweeter.",
+    color: "#F97316",
+    lightColor: "#FFEDD5",
+    slug: "/cakes",
+    downloadLink: null,
+    appStoreLink: null,
+    hasScreenshots: false,
+    isPlaceholder: true,
+  },
+];
+
+export const getAppBySlug = (slug: string): AppData | undefined => {
+  return apps.find((app) => app.slug === slug);
+};
+
+export const getAppById = (id: string): AppData | undefined => {
+  return apps.find((app) => app.id === id);
+};
+
+export const placeholderApps = apps.filter((app) => app.isPlaceholder);
+export const realApps = apps.filter((app) => !app.isPlaceholder);
