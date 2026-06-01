@@ -10,7 +10,7 @@ import { NewsletterSection } from "@/components/sections/NewsletterSection";
 export default function ConceptB() {
   return (
     <>
-      <Navbar />
+      <Navbar darkHero />
       <main className="flex-1">
         <HeroMission />
         <WhyWeExist />

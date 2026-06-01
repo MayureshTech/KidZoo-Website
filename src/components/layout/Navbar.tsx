@@ -7,7 +7,11 @@ import { apps } from "@/lib/apps-data";
 import Link from "next/link";
 import { Menu, X, ChevronDown } from "lucide-react";
 
-export function Navbar() {
+interface NavbarProps {
+  darkHero?: boolean;
+}
+
+export function Navbar({ darkHero = false }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [appsDropdownOpen, setAppsDropdownOpen] = useState(false);
@@ -28,6 +32,8 @@ export function Navbar() {
     { label: "Contact", href: "/contact" },
   ];
 
+  const isDark = darkHero && !scrolled;
+
   return (
     <>
       <motion.nav
@@ -37,7 +43,9 @@ export function Navbar() {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
           scrolled
-            ? "bg-white/95 backdrop-blur-xl shadow-nav"
+            ? darkHero
+              ? "bg-[#0B0F1A]/95 backdrop-blur-xl shadow-[0_2px_16px_rgba(0,0,0,0.3)]"
+              : "bg-white/95 backdrop-blur-xl shadow-nav"
             : "bg-transparent"
         )}
       >
@@ -56,7 +64,7 @@ export function Navbar() {
               <span
                 className={cn(
                   "text-xl font-bold hidden sm:block",
-                  scrolled ? "text-gray-900" : "text-gray-900"
+                  isDark ? "text-white" : "text-gray-900"
                 )}
                 style={{ fontFamily: "var(--font-plus-jakarta)" }}
               >
@@ -72,9 +80,11 @@ export function Navbar() {
                   href={link.href}
                   className={cn(
                     "px-4 py-2 text-sm font-medium rounded-lg transition-colors",
-                    scrolled
-                      ? "text-gray-600 hover:text-pink-primary hover:bg-pink-light/50"
-                      : "text-gray-900 hover:text-pink-primary hover:bg-white/50"
+                    isDark
+                      ? "text-white/70 hover:text-white hover:bg-white/10"
+                      : scrolled
+                        ? "text-gray-600 hover:text-pink-primary hover:bg-pink-light/50"
+                        : "text-gray-900 hover:text-pink-primary hover:bg-white/50"
                   )}
                 >
                   {link.label}
@@ -88,9 +98,11 @@ export function Navbar() {
                   onMouseEnter={() => setAppsDropdownOpen(true)}
                   className={cn(
                     "flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-lg transition-colors",
-                    scrolled
-                      ? "text-gray-600 hover:text-pink-primary hover:bg-pink-light/50"
-                      : "text-gray-900 hover:text-pink-primary hover:bg-white/50"
+                    isDark
+                      ? "text-white/70 hover:text-white hover:bg-white/10"
+                      : scrolled
+                        ? "text-gray-600 hover:text-pink-primary hover:bg-pink-light/50"
+                        : "text-gray-900 hover:text-pink-primary hover:bg-white/50"
                   )}
                 >
                   Our Apps
@@ -159,13 +171,26 @@ export function Navbar() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+              className={cn(
+                "md:hidden p-2 rounded-lg transition-colors",
+                isDark ? "hover:bg-white/10" : "hover:bg-gray-100"
+              )}
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? (
-                <X className="w-6 h-6 text-gray-900" />
+                <X
+                  className={cn(
+                    "w-6 h-6",
+                    isDark ? "text-white" : "text-gray-900"
+                  )}
+                />
               ) : (
-                <Menu className="w-6 h-6 text-gray-900" />
+                <Menu
+                  className={cn(
+                    "w-6 h-6",
+                    isDark ? "text-white" : "text-gray-900"
+                  )}
+                />
               )}
             </button>
           </div>
