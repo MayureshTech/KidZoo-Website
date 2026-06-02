@@ -389,6 +389,7 @@ export default function EventsPage() {
                         name={app.shortName}
                         color={app.color}
                         lightColor={app.lightColor}
+                        logoPath={app.logoPath}
                         size="md"
                         className="mb-4"
                       />

@@ -388,6 +388,7 @@ export default function CampPage() {
                         name={app.shortName}
                         color={app.color}
                         lightColor={app.lightColor}
+                        logoPath={app.logoPath}
                         size="md"
                         className="mb-4"
                       />

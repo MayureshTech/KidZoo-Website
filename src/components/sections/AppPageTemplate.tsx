@@ -33,6 +33,7 @@ export function AppPageTemplate({ app }: AppPageTemplateProps) {
                   name={app.shortName}
                   color={app.color}
                   lightColor={app.lightColor}
+                  logoPath={app.logoPath}
                   size="lg"
                 />
               </div>
@@ -152,6 +153,7 @@ export function AppPageTemplate({ app }: AppPageTemplateProps) {
                       name={otherApp.shortName}
                       color={otherApp.color}
                       lightColor={otherApp.lightColor}
+                      logoPath={otherApp.logoPath}
                       size="md"
                       className="mb-4"
                     />

@@ -40,6 +40,7 @@ function AppMarqueeRow({
                 name={app.shortName}
                 color={app.color}
                 lightColor={app.lightColor}
+                logoPath={app.logoPath}
                 size="sm"
               />
               <div className="flex-1 min-w-0">
@@ -69,6 +70,7 @@ function AppMarqueeRow({
                 name={app.shortName}
                 color={app.color}
                 lightColor={app.lightColor}
+                logoPath={app.logoPath}
                 size="sm"
               />
               <div className="flex-1 min-w-0">
@@ -124,6 +126,7 @@ export function EcosystemCarousel() {
                   name={app.shortName}
                   color={app.color}
                   lightColor={app.lightColor}
+                  logoPath={app.logoPath}
                   size="sm"
                 />
                 <span className="text-sm font-bold text-gray-900">{app.shortName}</span>

@@ -11,6 +11,7 @@ export interface AppData {
   appStoreLink: string | null;
   hasScreenshots: boolean;
   isPlaceholder: boolean;
+  logoPath?: string;
   teaserFeatures?: string[];
 }
 
@@ -48,6 +49,7 @@ export const apps: AppData[] = [
     appStoreLink: null,
     hasScreenshots: true,
     isPlaceholder: false,
+    logoPath: "/images/logos/events.svg",
     teaserFeatures: [
       "Find events near you with map",
       "Filter by age, location, cost, type",
@@ -68,6 +70,7 @@ export const apps: AppData[] = [
     appStoreLink: null,
     hasScreenshots: true,
     isPlaceholder: false,
+    logoPath: "/images/logos/camp.png",
     teaserFeatures: [
       "Find camps near your home location",
       "Filter by age, type, price, distance",
@@ -88,6 +91,7 @@ export const apps: AppData[] = [
     appStoreLink: null,
     hasScreenshots: true,
     isPlaceholder: false,
+    logoPath: "/images/logos/activities.png",
     teaserFeatures: [
       "Search by subject, age, grade, location",
       "Filter by distance and activity type",

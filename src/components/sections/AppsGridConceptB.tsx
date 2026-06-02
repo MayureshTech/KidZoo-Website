@@ -35,6 +35,7 @@ export function AppsGridConceptB() {
                       name={app.shortName}
                       color={app.color}
                       lightColor={app.lightColor}
+                      logoPath={app.logoPath}
                       size="lg"
                     />
                     {!app.isPlaceholder && (
