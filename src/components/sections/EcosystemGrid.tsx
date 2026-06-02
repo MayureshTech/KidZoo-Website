@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { AppIcon } from "@/components/shared/AppIcon";
-import { placeholderApps } from "@/lib/apps-data";
+import { apps } from "@/lib/apps-data";
 import { ArrowRight } from "lucide-react";
 
 export function EcosystemGrid() {
@@ -19,9 +19,9 @@ export function EcosystemGrid() {
           className="mx-auto mb-16"
         />
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {placeholderApps.map((app, index) => (
-            <ScrollReveal key={app.id} delay={index * 0.1}>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {apps.map((app, index) => (
+            <ScrollReveal key={app.id} delay={index * 0.08}>
               <Link href={app.slug} className="group block h-full">
                 <motion.div
                   whileHover={{ y: -6 }}
@@ -33,13 +33,19 @@ export function EcosystemGrid() {
                   }}
                 >
                   <div className="p-6 flex flex-col flex-1">
-                    <AppIcon
-                      name={app.shortName}
-                      color={app.color}
-                      lightColor={app.lightColor}
-                      size="md"
-                      className="mb-4"
-                    />
+                    <div className="flex items-start justify-between mb-4">
+                      <AppIcon
+                        name={app.shortName}
+                        color={app.color}
+                        lightColor={app.lightColor}
+                        size="md"
+                      />
+                      {!app.isPlaceholder && (
+                        <span className="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full bg-gray-100 text-gray-600">
+                          Available
+                        </span>
+                      )}
+                    </div>
                     <h3
                       className="text-lg font-bold text-gray-900 mb-2"
                       style={{ fontFamily: "var(--font-plus-jakarta)" }}
@@ -53,7 +59,7 @@ export function EcosystemGrid() {
                       className="inline-flex items-center gap-1 text-sm font-semibold group-hover:gap-2 transition-all"
                       style={{ color: app.color }}
                     >
-                      Learn More
+                      {app.isPlaceholder ? "Coming Soon" : "Learn More"}
                       <ArrowRight className="w-4 h-4" />
                     </span>
                   </div>
