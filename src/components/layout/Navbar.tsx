@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { apps } from "@/lib/apps-data";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X, ChevronDown } from "lucide-react";
 
 interface NavbarProps {
@@ -53,13 +54,14 @@ export function Navbar({ darkHero = false }: NavbarProps) {
           <div className="flex items-center justify-between h-16 md:h-[72px]">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 shrink-0">
-              <div className="w-10 h-10 rounded-xl gradient-hero flex items-center justify-center">
-                <span
-                  className="text-white font-bold text-lg"
-                  style={{ fontFamily: "var(--font-plus-jakarta)" }}
-                >
-                  K
-                </span>
+              <div className="w-10 h-10 rounded-xl overflow-hidden bg-white flex items-center justify-center shadow-sm">
+                <Image
+                  src="/images/logos/kidzoo-main.png"
+                  alt="KidZoo"
+                  width={40}
+                  height={40}
+                  className="object-contain w-full h-full"
+                />
               </div>
               <span
                 className={cn(
@@ -137,14 +139,26 @@ export function Navbar({ darkHero = false }: NavbarProps) {
                               onClick={() => setAppsDropdownOpen(false)}
                               className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-50 transition-colors"
                             >
-                              <div
-                                className="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm font-bold shrink-0"
-                                style={{
-                                  background: `linear-gradient(135deg, ${app.color} 0%, ${app.lightColor} 200%)`,
-                                }}
-                              >
-                                {app.shortName.charAt(0)}
-                              </div>
+                              {app.logoPath ? (
+                                <div className="w-8 h-8 rounded-lg overflow-hidden bg-white flex items-center justify-center shrink-0 shadow-sm" style={{ boxShadow: `0 0 0 1px ${app.lightColor}` }}>
+                                  <Image
+                                    src={app.logoPath}
+                                    alt={app.shortName}
+                                    width={32}
+                                    height={32}
+                                    className="object-contain w-full h-full"
+                                  />
+                                </div>
+                              ) : (
+                                <div
+                                  className="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm font-bold shrink-0"
+                                  style={{
+                                    background: `linear-gradient(135deg, ${app.color} 0%, ${app.lightColor} 200%)`,
+                                  }}
+                                >
+                                  {app.shortName.charAt(0)}
+                                </div>
+                              )}
                               <span className="text-sm font-medium text-gray-900">
                                 {app.shortName}
                               </span>
@@ -217,12 +231,23 @@ export function Navbar({ darkHero = false }: NavbarProps) {
             >
               <div className="flex flex-col h-full p-6">
                 <div className="flex items-center justify-between mb-8">
-                  <span
-                    className="text-xl font-bold text-gray-900"
-                    style={{ fontFamily: "var(--font-plus-jakarta)" }}
-                  >
-                    KidZoo
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-lg overflow-hidden bg-white flex items-center justify-center shadow-sm">
+                      <Image
+                        src="/images/logos/kidzoo-main.png"
+                        alt="KidZoo"
+                        width={32}
+                        height={32}
+                        className="object-contain w-full h-full"
+                      />
+                    </div>
+                    <span
+                      className="text-xl font-bold text-gray-900"
+                      style={{ fontFamily: "var(--font-plus-jakarta)" }}
+                    >
+                      KidZoo
+                    </span>
+                  </div>
                   <button
                     onClick={() => setMobileMenuOpen(false)}
                     className="p-2 rounded-lg hover:bg-gray-100"
@@ -256,14 +281,26 @@ export function Navbar({ darkHero = false }: NavbarProps) {
                         onClick={() => setMobileMenuOpen(false)}
                         className="flex items-center gap-3 px-4 py-2.5 rounded-xl hover:bg-gray-50 transition-colors"
                       >
-                        <div
-                          className="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm font-bold shrink-0"
-                          style={{
-                            background: `linear-gradient(135deg, ${app.color} 0%, ${app.lightColor} 200%)`,
-                          }}
-                        >
-                          {app.shortName.charAt(0)}
-                        </div>
+                        {app.logoPath ? (
+                          <div className="w-8 h-8 rounded-lg overflow-hidden bg-white flex items-center justify-center shrink-0 shadow-sm" style={{ boxShadow: `0 0 0 1px ${app.lightColor}` }}>
+                            <Image
+                              src={app.logoPath}
+                              alt={app.shortName}
+                              width={32}
+                              height={32}
+                              className="object-contain w-full h-full"
+                            />
+                          </div>
+                        ) : (
+                          <div
+                            className="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm font-bold shrink-0"
+                            style={{
+                              background: `linear-gradient(135deg, ${app.color} 0%, ${app.lightColor} 200%)`,
+                            }}
+                          >
+                            {app.shortName.charAt(0)}
+                          </div>
+                        )}
                         <span className="text-sm font-medium text-gray-900">
                           {app.shortName}
                         </span>

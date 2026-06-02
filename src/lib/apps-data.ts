@@ -29,6 +29,7 @@ export const apps: AppData[] = [
     appStoreLink: null,
     hasScreenshots: true,
     isPlaceholder: false,
+    logoPath: "/images/logos/playdates.png",
     teaserFeatures: [
       "Set a playdate in 30 seconds",
       "See who's available right now",
