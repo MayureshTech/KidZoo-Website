@@ -9,7 +9,7 @@ import { NewsletterSection } from "@/components/sections/NewsletterSection";
 export default function Home() {
   return (
     <>
-      <Navbar />
+      <Navbar darkHero />
       <main className="flex-1">
         <HeroCarousel />
         <MissionSection />

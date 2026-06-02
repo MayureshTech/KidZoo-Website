@@ -13,56 +13,56 @@ const slides = [
     name: "KidZoo Playdates",
     tagline: "Play Dates, Made Easy",
     description: "Set up playdates for your children in 30 seconds. No more back and forth messaging.",
-    gradient: "linear-gradient(135deg, #E83E8C 0%, #0D9488 100%)",
+    bgColor: "#1a1a2e",
+    accentColor: "#E83E8C",
+    accentGlow: "rgba(232, 62, 140, 0.15)",
     logo: "/images/logos/playdates.png",
     screenshot: "/images/screenshots/playdates/friend-request.png",
     cta: "Download Now",
     link: "https://play.google.com/store/apps/details?id=com.kidzoo.kidzoo&pcampaignid=web_share",
     isExternal: true,
-    textColor: "text-white",
-    subtextColor: "text-white/80",
   },
   {
     id: "events",
     name: "KidZoo Events",
     tagline: "Discover Family Events",
     description: "Find all the family events happening near you. Sports, arts, festivals, and more.",
-    gradient: "linear-gradient(135deg, #D946EF 0%, #8B5CF6 100%)",
+    bgColor: "#16213e",
+    accentColor: "#D946EF",
+    accentGlow: "rgba(217, 70, 239, 0.15)",
     logo: "/images/logos/events.svg",
     screenshot: "/images/screenshots/events/Events HomeUpcoming.png",
     cta: "Learn More",
     link: "/events",
     isExternal: false,
-    textColor: "text-white",
-    subtextColor: "text-white/80",
   },
   {
     id: "camp",
     name: "KidZoo Camp",
     tagline: "Find Summer Camps",
     description: "Arts, sports, STEM, swimming, and more. Find the perfect camp for kids aged 1-17.",
-    gradient: "linear-gradient(135deg, #8B5CF6 0%, #06B6D4 100%)",
+    bgColor: "#1e1b4b",
+    accentColor: "#8B5CF6",
+    accentGlow: "rgba(139, 92, 246, 0.15)",
     logo: "/images/logos/camp.png",
     screenshot: "/images/screenshots/camp/Home with Floating.png",
     cta: "Learn More",
     link: "/camp",
     isExternal: false,
-    textColor: "text-white",
-    subtextColor: "text-white/80",
   },
   {
     id: "activities",
     name: "KidZoo Activities",
     tagline: "Awesome Activities",
     description: "Sports, coding, music, science, and more. Find what your child loves.",
-    gradient: "linear-gradient(135deg, #06B6D4 0%, #10B981 100%)",
+    bgColor: "#0f172a",
+    accentColor: "#06B6D4",
+    accentGlow: "rgba(6, 182, 212, 0.15)",
     logo: "/images/logos/activities.png",
     screenshot: "/images/screenshots/activities/Active play dates.png",
     cta: "Learn More",
     link: "/activities",
     isExternal: false,
-    textColor: "text-white",
-    subtextColor: "text-white/80",
   },
 ];
 
@@ -164,14 +164,36 @@ export function HeroCarousel() {
             scale: { duration: 0.4 },
           }}
           className="absolute inset-0"
-          style={{ background: slide.gradient }}
+          style={{ backgroundColor: slide.bgColor }}
         />
       </AnimatePresence>
 
-      {/* Floating gradient orbs for depth */}
+      {/* Colored accent orbs for depth */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-white/10 rounded-full blur-[100px] animate-drift" />
-        <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-white/10 rounded-full blur-[100px] animate-drift" style={{ animationDelay: "-4s" }} />
+        <motion.div
+          key={`orb1-${slide.id}`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          className="absolute top-1/4 -left-20 w-[500px] h-[500px] rounded-full blur-[120px] animate-drift"
+          style={{ background: slide.accentGlow }}
+        />
+        <motion.div
+          key={`orb2-${slide.id}`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="absolute bottom-1/3 -right-20 w-[400px] h-[400px] rounded-full blur-[100px] animate-drift"
+          style={{ background: slide.accentGlow, animationDelay: "-4s" }}
+        />
+        <motion.div
+          key={`orb3-${slide.id}`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.6 }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[150px]"
+          style={{ background: slide.accentGlow, opacity: 0.5 }}
+        />
       </div>
 
       {/* Content */}
@@ -210,7 +232,7 @@ export function HeroCarousel() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.35 }}
-                className={cn("text-sm font-medium tracking-[0.2em] uppercase", slide.subtextColor)}
+                className="text-sm font-medium tracking-[0.2em] uppercase text-white/70"
               >
                 {slide.name}
               </motion.span>
@@ -220,10 +242,7 @@ export function HeroCarousel() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className={cn(
-                  "text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight",
-                  slide.textColor
-                )}
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight text-white"
                 style={{ fontFamily: "var(--font-plus-jakarta)" }}
               >
                 {slide.tagline}
@@ -234,10 +253,7 @@ export function HeroCarousel() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
-                className={cn(
-                  "text-lg md:text-xl leading-relaxed max-w-lg mx-auto lg:mx-0",
-                  slide.subtextColor
-                )}
+                className="text-lg md:text-xl leading-relaxed max-w-lg mx-auto lg:mx-0 text-white/80"
               >
                 {slide.description}
               </motion.p>
