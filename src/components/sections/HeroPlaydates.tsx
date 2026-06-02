@@ -95,12 +95,17 @@ export function HeroPlaydates() {
             style={{ perspective: "1000px" }}
           >
             <div className="relative">
-              <PhoneMockup
-                src="/images/screenshots/playdates/friend-request.png"
-                alt="KidZoo Playdates App - Friend Request Screen"
-                width={280}
-                height={570}
-              />
+              <motion.div
+                animate={{ y: [0, -14, 0] }}
+                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <PhoneMockup
+                  src="/images/screenshots/playdates/friend-request.png"
+                  alt="KidZoo Playdates App - Friend Request Screen"
+                  width={280}
+                  height={570}
+                />
+              </motion.div>
               {/* Floating decorative elements */}
               <div className="absolute -top-4 -right-4 w-16 h-16 bg-pink-light rounded-2xl rotate-12 opacity-60" />
               <div className="absolute -bottom-8 -left-8 w-12 h-12 bg-teal-light rounded-full opacity-60" />

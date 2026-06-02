@@ -22,32 +22,41 @@ export function EcosystemGrid() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {placeholderApps.map((app, index) => (
             <ScrollReveal key={app.id} delay={index * 0.1}>
-              <Link href={app.slug} className="group block">
+              <Link href={app.slug} className="group block h-full">
                 <motion.div
                   whileHover={{ y: -6 }}
                   transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-                  className="bg-white border border-gray-100 rounded-2xl p-6 shadow-card hover:shadow-card-hover transition-all duration-300 h-full"
+                  className="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 h-full flex flex-col"
+                  style={{
+                    borderTopColor: app.color,
+                    borderTopWidth: "3px",
+                  }}
                 >
-                  <AppIcon
-                    name={app.shortName}
-                    color={app.color}
-                    lightColor={app.lightColor}
-                    size="md"
-                    className="mb-4"
-                  />
-                  <h3
-                    className="text-lg font-bold text-gray-900 mb-2"
-                    style={{ fontFamily: "var(--font-plus-jakarta)" }}
-                  >
-                    {app.shortName}
-                  </h3>
-                  <p className="text-sm text-gray-600 leading-relaxed mb-4">
-                    {app.description}
-                  </p>
-                  <span className="inline-flex items-center gap-1 text-sm font-medium text-teal-primary group-hover:gap-2 transition-all">
-                    Learn More
-                    <ArrowRight className="w-4 h-4" />
-                  </span>
+                  <div className="p-6 flex flex-col flex-1">
+                    <AppIcon
+                      name={app.shortName}
+                      color={app.color}
+                      lightColor={app.lightColor}
+                      size="md"
+                      className="mb-4"
+                    />
+                    <h3
+                      className="text-lg font-bold text-gray-900 mb-2"
+                      style={{ fontFamily: "var(--font-plus-jakarta)" }}
+                    >
+                      {app.shortName}
+                    </h3>
+                    <p className="text-sm text-gray-600 leading-relaxed mb-4 flex-1">
+                      {app.description}
+                    </p>
+                    <span
+                      className="inline-flex items-center gap-1 text-sm font-semibold group-hover:gap-2 transition-all"
+                      style={{ color: app.color }}
+                    >
+                      Learn More
+                      <ArrowRight className="w-4 h-4" />
+                    </span>
+                  </div>
                 </motion.div>
               </Link>
             </ScrollReveal>
