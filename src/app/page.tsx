@@ -3,7 +3,7 @@ import { Footer } from "@/components/layout/Footer";
 import { HeroPlaydates } from "@/components/sections/HeroPlaydates";
 import { MissionSection } from "@/components/sections/MissionSection";
 import { FeaturesSection } from "@/components/sections/FeaturesSection";
-import { EcosystemGrid } from "@/components/sections/EcosystemGrid";
+import { EcosystemCarousel } from "@/components/sections/EcosystemCarousel";
 import { NewsletterSection } from "@/components/sections/NewsletterSection";
 
 export default function Home() {
@@ -14,7 +14,7 @@ export default function Home() {
         <HeroPlaydates />
         <MissionSection />
         <FeaturesSection />
-        <EcosystemGrid />
+        <EcosystemCarousel />
         <NewsletterSection />
       </main>
       <Footer />
