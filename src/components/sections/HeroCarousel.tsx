@@ -13,9 +13,9 @@ const slides = [
     name: "KidZoo Playdates",
     tagline: "Play Dates, Made Easy",
     description: "Set up playdates for your children in 30 seconds. No more back and forth messaging.",
-    bgColor: "#1a1a2e",
+    bgColor: "#FDF8F5",
     accentColor: "#E83E8C",
-    accentGlow: "rgba(232, 62, 140, 0.15)",
+    accentLight: "#FDE8F2",
     logo: "/images/logos/playdates.png",
     screenshot: "/images/screenshots/playdates/friend-request.png",
     cta: "Download Now",
@@ -27,9 +27,9 @@ const slides = [
     name: "KidZoo Events",
     tagline: "Discover Family Events",
     description: "Find all the family events happening near you. Sports, arts, festivals, and more.",
-    bgColor: "#16213e",
+    bgColor: "#FAE8FD",
     accentColor: "#D946EF",
-    accentGlow: "rgba(217, 70, 239, 0.15)",
+    accentLight: "#FAE8FD",
     logo: "/images/logos/events.svg",
     screenshot: "/images/screenshots/events/Events HomeUpcoming.png",
     cta: "Learn More",
@@ -41,9 +41,9 @@ const slides = [
     name: "KidZoo Camp",
     tagline: "Find Summer Camps",
     description: "Arts, sports, STEM, swimming, and more. Find the perfect camp for kids aged 1-17.",
-    bgColor: "#1e1b4b",
+    bgColor: "#F3E8FF",
     accentColor: "#8B5CF6",
-    accentGlow: "rgba(139, 92, 246, 0.15)",
+    accentLight: "#F3E8FF",
     logo: "/images/logos/camp.png",
     screenshot: "/images/screenshots/camp/Home with Floating.png",
     cta: "Learn More",
@@ -55,9 +55,9 @@ const slides = [
     name: "KidZoo Activities",
     tagline: "Awesome Activities",
     description: "Sports, coding, music, science, and more. Find what your child loves.",
-    bgColor: "#0f172a",
+    bgColor: "#E0F7FA",
     accentColor: "#06B6D4",
-    accentGlow: "rgba(6, 182, 212, 0.15)",
+    accentLight: "#E0F7FA",
     logo: "/images/logos/activities.png",
     screenshot: "/images/screenshots/activities/Active play dates.png",
     cta: "Learn More",
@@ -86,7 +86,6 @@ export function HeroCarousel() {
     setCurrentIndex(index);
   };
 
-  // Auto-advance
   useEffect(() => {
     if (isPaused) return;
     const timer = setInterval(() => {
@@ -101,42 +100,35 @@ export function HeroCarousel() {
     enter: (direction: number) => ({
       x: direction > 0 ? "100%" : "-100%",
       opacity: 0,
-      scale: 0.95,
     }),
     center: {
       x: 0,
       opacity: 1,
-      scale: 1,
     },
     exit: (direction: number) => ({
       x: direction < 0 ? "100%" : "-100%",
       opacity: 0,
-      scale: 0.95,
     }),
   };
 
   const CtaButton = ({ slide }: { slide: typeof slides[0] }) => {
-    const baseClasses = cn(
-      "inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-base",
-      "bg-white text-gray-900 hover:bg-white/90 transition-all duration-200 hover:-translate-y-0.5 shadow-lg"
+    const buttonClasses = cn(
+      "inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-base transition-all duration-200 hover:-translate-y-0.5 shadow-lg",
+      slide.id === "playdates"
+        ? "bg-gray-900 text-white hover:bg-gray-800"
+        : "bg-white text-gray-900 hover:bg-gray-50 border border-gray-200"
     );
 
     if (slide.isExternal) {
       return (
-        <a
-          href={slide.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={baseClasses}
-        >
+        <a href={slide.link} target="_blank" rel="noopener noreferrer" className={buttonClasses}>
           <Download className="w-5 h-5" />
           {slide.cta}
         </a>
       );
     }
-
     return (
-      <Link href={slide.link} className={baseClasses}>
+      <Link href={slide.link} className={buttonClasses}>
         {slide.cta}
         <ChevronRight className="w-5 h-5" />
       </Link>
@@ -145,14 +137,14 @@ export function HeroCarousel() {
 
   return (
     <section
-      className="relative h-screen w-full overflow-hidden"
+      className="relative min-h-screen w-full overflow-hidden"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* Background with AnimatePresence */}
-      <AnimatePresence initial={false} custom={direction} mode="popLayout">
+      {/* Background slides */}
+      <AnimatePresence initial={false} custom={direction}>
         <motion.div
-          key={`bg-${slide.id}`}
+          key={slide.id}
           custom={direction}
           variants={variants}
           initial="enter"
@@ -161,78 +153,67 @@ export function HeroCarousel() {
           transition={{
             x: { type: "spring", stiffness: 300, damping: 30 },
             opacity: { duration: 0.4 },
-            scale: { duration: 0.4 },
           }}
           className="absolute inset-0"
           style={{ backgroundColor: slide.bgColor }}
         />
       </AnimatePresence>
 
-      {/* Colored accent orbs for depth */}
+      {/* Soft colored orbs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <motion.div
-          key={`orb1-${slide.id}`}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="absolute top-1/4 -left-20 w-[500px] h-[500px] rounded-full blur-[120px] animate-drift"
-          style={{ background: slide.accentGlow }}
+          animate={{
+            x: [0, 30, 0],
+            y: [0, -20, 0],
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-20 right-[10%] w-[400px] h-[400px] rounded-full blur-[100px] opacity-40"
+          style={{ background: slide.accentColor }}
         />
         <motion.div
-          key={`orb2-${slide.id}`}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.3 }}
-          className="absolute bottom-1/3 -right-20 w-[400px] h-[400px] rounded-full blur-[100px] animate-drift"
-          style={{ background: slide.accentGlow, animationDelay: "-4s" }}
-        />
-        <motion.div
-          key={`orb3-${slide.id}`}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.6 }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[150px]"
-          style={{ background: slide.accentGlow, opacity: 0.5 }}
+          animate={{
+            x: [0, -20, 0],
+            y: [0, 30, 0],
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="absolute bottom-20 left-[5%] w-[300px] h-[300px] rounded-full blur-[80px] opacity-30"
+          style={{ background: slide.accentColor }}
         />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
-        <AnimatePresence initial={false} custom={direction} mode="wait">
+      <div className="relative z-10 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 flex items-center">
+        <AnimatePresence mode="wait">
           <motion.div
             key={slide.id}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="w-full grid lg:grid-cols-2 gap-12 items-center"
+            exit={{ opacity: 0, y: -30 }}
+            transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+            className="w-full grid lg:grid-cols-2 gap-12 lg:gap-16 items-center"
           >
-            {/* Left: Text Content */}
-            <div className="flex flex-col gap-6 text-center lg:text-left">
+            {/* Left: Text */}
+            <div className="flex flex-col gap-6 text-center lg:text-left order-2 lg:order-1">
               {/* App Logo */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
                 className="flex justify-center lg:justify-start"
               >
-                <div className="w-16 h-16 rounded-2xl overflow-hidden bg-white/20 backdrop-blur-sm flex items-center justify-center p-2 shadow-lg">
-                  <Image
-                    src={slide.logo}
-                    alt={slide.name}
-                    width={48}
-                    height={48}
-                    className="object-contain w-full h-full"
-                  />
+                <div className="w-16 h-16 rounded-2xl overflow-hidden bg-white shadow-card flex items-center justify-center p-2">
+                  <Image src={slide.logo} alt={slide.name} width={48} height={48} className="object-contain w-full h-full" />
                 </div>
+
               </motion.div>
 
               {/* Tagline */}
               <motion.span
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.35 }}
-                className="text-sm font-medium tracking-[0.2em] uppercase text-white/70"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2 }}
+                className="text-sm font-semibold tracking-[0.15em] uppercase"
+                style={{ color: slide.accentColor }}
               >
                 {slide.name}
               </motion.span>
@@ -241,8 +222,8 @@ export function HeroCarousel() {
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight text-white"
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-[3.5rem] xl:text-[4rem] font-extrabold leading-[1.1] tracking-tight text-gray-900"
                 style={{ fontFamily: "var(--font-plus-jakarta)" }}
               >
                 {slide.tagline}
@@ -252,8 +233,8 @@ export function HeroCarousel() {
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                className="text-lg md:text-xl leading-relaxed max-w-lg mx-auto lg:mx-0 text-white/80"
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="text-lg text-gray-600 leading-relaxed max-w-lg mx-auto lg:mx-0"
               >
                 {slide.description}
               </motion.p>
@@ -262,103 +243,97 @@ export function HeroCarousel() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
                 className="flex justify-center lg:justify-start"
               >
                 <CtaButton slide={slide} />
               </motion.div>
             </div>
 
-            {/* Right: Phone Mockup */}
+            {/* Right: Phone */}
             <motion.div
-              initial={{ opacity: 0, x: 60, rotateY: 15 }}
+              initial={{ opacity: 0, x: 60, rotateY: 10 }}
               animate={{ opacity: 1, x: 0, rotateY: 0 }}
-              exit={{ opacity: 0, x: -60, rotateY: -15 }}
-              transition={{ duration: 0.7, delay: 0.3, type: "spring", stiffness: 100 }}
-              className="flex justify-center lg:justify-end"
+              exit={{ opacity: 0, x: -40 }}
+              transition={{ duration: 0.7, delay: 0.2, type: "spring", stiffness: 100 }}
+              className="flex justify-center lg:justify-end order-1 lg:order-2"
               style={{ perspective: "1000px" }}
             >
-              <div className="relative animate-float">
-                <div className="phone-mockup relative" style={{ width: 300, height: 610 }}>
+              <div className="relative">
+                <div className="phone-mockup animate-float" style={{ width: 280, height: 570 }}>
                   <div className="absolute inset-0 overflow-hidden rounded-[28px]">
                     <Image
                       src={slide.screenshot}
-                      alt={`${slide.name} app screenshot`}
+                      alt={`${slide.name} app`}
                       fill
                       className="object-cover"
-                      sizes="300px"
+                      sizes="280px"
                       priority
                     />
                   </div>
                 </div>
-                {/* Decorative elements */}
-                <div className="absolute -top-6 -right-6 w-20 h-20 bg-white/20 rounded-2xl rotate-12 backdrop-blur-sm" />
-                <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-white/10 rounded-full backdrop-blur-sm" />
+                {/* Decorative shape */}
+                <div
+                  className="absolute -z-10 -bottom-8 -right-8 w-64 h-64 rounded-full blur-3xl opacity-50"
+                  style={{ background: slide.accentLight }}
+                />
               </div>
             </motion.div>
           </motion.div>
         </AnimatePresence>
       </div>
 
-      {/* Navigation Arrows */}
-      <button
-        onClick={() => paginate(-1)}
-        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 transition-colors group"
-        aria-label="Previous slide"
-      >
-        <ChevronLeft className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
-      </button>
-      <button
-        onClick={() => paginate(1)}
-        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 transition-colors group"
-        aria-label="Next slide"
-      >
-        <ChevronRight className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
-      </button>
+      {/* Navigation */}
+      <div className="absolute bottom-8 left-0 right-0 z-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+          {/* Arrows */}
+          <div className="flex gap-3">
+            <button
+              onClick={() => paginate(-1)}
+              className="w-12 h-12 rounded-full bg-white shadow-card flex items-center justify-center hover:shadow-card-hover transition-all hover:-translate-y-0.5 group"
+            >
+              <ChevronLeft className="w-5 h-5 text-gray-700 group-hover:text-gray-900" />
+            </button>
+            <button
+              onClick={() => paginate(1)}
+              className="w-12 h-12 rounded-full bg-white shadow-card flex items-center justify-center hover:shadow-card-hover transition-all hover:-translate-y-0.5 group"
+            >
+              <ChevronRight className="w-5 h-5 text-gray-700 group-hover:text-gray-900" />
+            </button>
+          </div>
 
-      {/* Dot Navigation */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goToSlide(index)}
-            className={cn(
-              "transition-all duration-300 rounded-full",
-              index === currentIndex
-                ? "w-8 h-3 bg-white"
-                : "w-3 h-3 bg-white/40 hover:bg-white/60"
-            )}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
+          {/* Dots */}
+          <div className="flex items-center gap-2">
+            {slides.map((s, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={cn(
+                  "transition-all duration-300 rounded-full",
+                  index === currentIndex
+                    ? "w-8 h-2.5"
+                    : "w-2.5 h-2.5 hover:opacity-70"
+                )}
+                style={{
+                  backgroundColor: index === currentIndex ? s.accentColor : "#CBD5E1",
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Progress */}
+          <div className="hidden sm:block w-24 h-1 bg-gray-200 rounded-full overflow-hidden">
+            <motion.div
+              className="h-full rounded-full"
+              style={{ backgroundColor: slide.accentColor }}
+              initial={{ width: "0%" }}
+              animate={{ width: isPaused ? "0%" : "100%" }}
+              transition={{ duration: 6, ease: "linear" }}
+              key={`progress-${currentIndex}-${isPaused}`}
+            />
+          </div>
+        </div>
       </div>
-
-      {/* Progress bar */}
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/10 z-20">
-        <motion.div
-          className="h-full bg-white/60"
-          initial={{ width: "0%" }}
-          animate={{ width: isPaused ? "0%" : "100%" }}
-          transition={{ duration: 6, ease: "linear" }}
-          key={`progress-${currentIndex}-${isPaused}`}
-        />
-      </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-16 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2"
-      >
-        <span className="text-xs text-white/50 font-medium tracking-wide">Scroll to explore</span>
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <ChevronRight className="w-5 h-5 text-white/50 rotate-90" />
-        </motion.div>
-      </motion.div>
     </section>
   );
 }

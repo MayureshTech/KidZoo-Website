@@ -290,6 +290,7 @@ export function Navbar({ darkHero = false }: NavbarProps) {
                               height={32}
                               className="object-contain w-full h-full"
                             />
+
                           </div>
                         ) : (
                           <div

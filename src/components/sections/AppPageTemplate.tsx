@@ -19,7 +19,7 @@ export function AppPageTemplate({ app }: AppPageTemplateProps) {
     <>
       {/* Hero */}
       <section
-        className="relative min-h-[70vh] flex items-center overflow-hidden"
+        className="relative min-h-screen flex items-center overflow-hidden"
         style={{
           background: `linear-gradient(135deg, ${app.color} 0%, ${app.lightColor} 200%)`,
         }}
