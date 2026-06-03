@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { PhoneMockup } from "@/components/shared/PhoneMockup";
 import { SectionHeader } from "@/components/shared/SectionHeader";
@@ -83,6 +85,8 @@ const screenshots = [
 export default function PlaydatesPage() {
   return (
     <>
+      <Navbar />
+      <main className="flex-1">
       {/* Hero */}
       <section className="relative min-h-[80vh] flex items-center bg-cream overflow-hidden">
         <div className="absolute top-20 right-20 w-96 h-96 orb orb-pink animate-drift" />
@@ -355,6 +359,8 @@ export default function PlaydatesPage() {
           </div>
         </div>
       </section>
+      </main>
+      <Footer />
     </>
   );
 }
