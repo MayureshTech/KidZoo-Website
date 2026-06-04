@@ -225,7 +225,7 @@ export default function PhotosPage() {
                     <div className="phone-mockup relative" style={{ width: 260, height: 530 }}>
                       <div className="absolute inset-0 overflow-hidden rounded-[28px]">
                         <Image
-                          src={screenshot.src}
+                          src={getAssetPath(screenshot.src)}
                           alt={screenshot.alt}
                           fill
                           className="object-cover"

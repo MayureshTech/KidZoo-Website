@@ -143,7 +143,7 @@ export function Navbar({ darkHero = false }: NavbarProps) {
                               {app.logoPath ? (
                                 <div className="w-8 h-8 rounded-lg overflow-hidden bg-white flex items-center justify-center shrink-0 shadow-sm" style={{ boxShadow: `0 0 0 1px ${app.lightColor}` }}>
                                   <Image
-                                    src={app.logoPath}
+                                    src={getAssetPath(app.logoPath)}
                                     alt={app.shortName}
                                     width={32}
                                     height={32}
@@ -285,7 +285,7 @@ export function Navbar({ darkHero = false }: NavbarProps) {
                         {app.logoPath ? (
                           <div className="w-8 h-8 rounded-lg overflow-hidden bg-white flex items-center justify-center shrink-0 shadow-sm" style={{ boxShadow: `0 0 0 1px ${app.lightColor}` }}>
                             <Image
-                              src={app.logoPath}
+                              src={getAssetPath(app.logoPath)}
                               alt={app.shortName}
                               width={32}
                               height={32}

@@ -23,7 +23,7 @@ export function PlaydatesSpotlight() {
           <ScrollReveal direction="left">
             <div className="flex justify-center lg:justify-start">
               <PhoneMockup
-                src={getAssetPath("/images/screenshots/playdates/whos-available.png")}
+                src="/images/screenshots/playdates/whos-available.png"
                 alt="KidZoo Playdates - See Who's Available"
                 width={280}
                 height={570}

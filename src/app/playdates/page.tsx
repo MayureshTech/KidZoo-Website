@@ -135,7 +135,7 @@ export default function PlaydatesPage() {
             <ScrollReveal direction="right">
               <div className="flex justify-center">
                 <PhoneMockup
-                  src={getAssetPath("/images/screenshots/playdates/friend-request.png")}
+                  src="/images/screenshots/playdates/friend-request.png"
                   alt="KidZoo Playdates App"
                   width={280}
                   height={570}

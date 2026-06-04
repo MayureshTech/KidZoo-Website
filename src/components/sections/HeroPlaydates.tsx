@@ -101,7 +101,7 @@ export function HeroPlaydates() {
                 transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
               >
                 <PhoneMockup
-                  src={getAssetPath("/images/screenshots/playdates/friend-request.png")}
+                   src="/images/screenshots/playdates/friend-request.png"
                   alt="KidZoo Playdates App - Friend Request Screen"
                   width={280}
                   height={570}
