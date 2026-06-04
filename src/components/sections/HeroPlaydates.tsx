@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { PhoneMockup } from "@/components/shared/PhoneMockup";
 import { ChevronDown } from "lucide-react";
+import { getAssetPath } from "@/lib/asset-path";
 
 export function HeroPlaydates() {
   return (
@@ -100,7 +101,7 @@ export function HeroPlaydates() {
                 transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
               >
                 <PhoneMockup
-                  src="/images/screenshots/playdates/friend-request.png"
+                  src={getAssetPath("/images/screenshots/playdates/friend-request.png")}
                   alt="KidZoo Playdates App - Friend Request Screen"
                   width={280}
                   height={570}

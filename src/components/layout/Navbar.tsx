@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { apps } from "@/lib/apps-data";
+import { getAssetPath } from "@/lib/asset-path";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, ChevronDown } from "lucide-react";
@@ -56,7 +57,7 @@ export function Navbar({ darkHero = false }: NavbarProps) {
             <Link href="/" className="flex items-center gap-2 shrink-0">
               <div className="w-10 h-10 rounded-xl overflow-hidden bg-white flex items-center justify-center shadow-sm">
                 <Image
-                  src="/images/logos/kidzoo-main.png"
+                  src={getAssetPath("/images/logos/kidzoo-main.png")}
                   alt="KidZoo"
                   width={40}
                   height={40}
@@ -234,7 +235,7 @@ export function Navbar({ darkHero = false }: NavbarProps) {
                   <div className="flex items-center gap-2">
                     <div className="w-8 h-8 rounded-lg overflow-hidden bg-white flex items-center justify-center shadow-sm">
                       <Image
-                        src="/images/logos/kidzoo-main.png"
+                  src={getAssetPath("/images/logos/kidzoo-main.png")}
                         alt="KidZoo"
                         width={32}
                         height={32}

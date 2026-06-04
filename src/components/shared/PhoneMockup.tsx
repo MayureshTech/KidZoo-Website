@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { getAssetPath } from "@/lib/asset-path";
 import Image from "next/image";
 
 interface PhoneMockupProps {
@@ -28,7 +29,7 @@ export function PhoneMockup({
     >
       <div className="absolute inset-0 overflow-hidden rounded-[28px]">
         <Image
-          src={src}
+          src={getAssetPath(src)}
           alt={alt}
           fill
           className="object-cover"

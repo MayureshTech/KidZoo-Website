@@ -10,6 +10,7 @@ import { SectionHeader } from "@/components/shared/SectionHeader";
 import { AppIcon } from "@/components/shared/AppIcon";
 import { placeholderApps } from "@/lib/apps-data";
 import { ArrowRight, MapPin, Search, Heart, Calendar, DollarSign, Users, Share2, Shield, Clock, Filter, Star, GraduationCap } from "lucide-react";
+import { getAssetPath } from "@/lib/asset-path";
 
 const features = [
   {
@@ -112,7 +113,7 @@ export default function CampPage() {
                     <div className="phone-mockup relative" style={{ width: 280, height: 570 }}>
                       <div className="absolute inset-0 overflow-hidden rounded-[28px]">
                         <Image
-                          src="/images/screenshots/camp/Home with Floating.png"
+                          src={getAssetPath("/images/screenshots/camp/Home with Floating.png")}
                           alt="KidZoo Camp - Home Screen with Recommended Camps"
                           fill
                           className="object-cover"

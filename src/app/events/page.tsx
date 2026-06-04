@@ -10,6 +10,7 @@ import { SectionHeader } from "@/components/shared/SectionHeader";
 import { AppIcon } from "@/components/shared/AppIcon";
 import { placeholderApps } from "@/lib/apps-data";
 import { ArrowRight, MapPin, Calendar, Search, Bell, Heart, Share2, Shield, Clock, Filter, Star, Users } from "lucide-react";
+import { getAssetPath } from "@/lib/asset-path";
 
 const features = [
   {
@@ -110,7 +111,7 @@ export default function EventsPage() {
                     <div className="phone-mockup relative" style={{ width: 280, height: 570 }}>
                       <div className="absolute inset-0 overflow-hidden rounded-[28px]">
                         <Image
-                          src="/images/screenshots/events/Events HomeUpcoming.png"
+                          src={getAssetPath("/images/screenshots/events/Events HomeUpcoming.png")}
                           alt="KidZoo Events - Home Screen with Upcoming Events"
                           fill
                           className="object-cover"

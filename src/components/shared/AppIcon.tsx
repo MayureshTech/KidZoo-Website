@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { getAssetPath } from "@/lib/asset-path";
 import Image from "next/image";
 
 interface AppIconProps {
@@ -48,7 +49,7 @@ export function AppIcon({
         }}
       >
         <Image
-          src={logoPath}
+          src={getAssetPath(logoPath)}
           alt={`${name} logo`}
           width={imageSizes[size]}
           height={imageSizes[size]}

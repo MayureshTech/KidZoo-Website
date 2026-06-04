@@ -10,6 +10,7 @@ import { SectionHeader } from "@/components/shared/SectionHeader";
 import { AppIcon } from "@/components/shared/AppIcon";
 import { placeholderApps } from "@/lib/apps-data";
 import { ArrowRight, Camera, Search, MessageCircle, Calendar, Heart, Shield, User, Star, Clock, Share2 } from "lucide-react";
+import { getAssetPath } from "@/lib/asset-path";
 
 const features = [
   {
@@ -110,7 +111,7 @@ export default function PhotosPage() {
                     <div className="phone-mockup relative" style={{ width: 280, height: 570 }}>
                       <div className="absolute inset-0 overflow-hidden rounded-[28px]">
                         <Image
-                          src="/images/screenshots/photos/themes.png"
+                          src={getAssetPath("/images/screenshots/photos/themes.png")}
                           alt="KidZoo Photos - Select a Theme"
                           fill
                           className="object-cover"

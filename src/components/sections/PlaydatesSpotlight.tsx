@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { PhoneMockup } from "@/components/shared/PhoneMockup";
 import { Check } from "lucide-react";
+import { getAssetPath } from "@/lib/asset-path";
 
 const highlights = [
   "Set a playdate in 30 seconds",
@@ -22,7 +23,7 @@ export function PlaydatesSpotlight() {
           <ScrollReveal direction="left">
             <div className="flex justify-center lg:justify-start">
               <PhoneMockup
-                src="/images/screenshots/playdates/whos-available.png"
+                src={getAssetPath("/images/screenshots/playdates/whos-available.png")}
                 alt="KidZoo Playdates - See Who's Available"
                 width={280}
                 height={570}

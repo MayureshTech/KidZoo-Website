@@ -10,6 +10,7 @@ import { SectionHeader } from "@/components/shared/SectionHeader";
 import { AppIcon } from "@/components/shared/AppIcon";
 import { placeholderApps } from "@/lib/apps-data";
 import { ArrowRight, Search, MapPin, Filter, GraduationCap, Clock, DollarSign, Shield, Share2, Calendar, Users, Music, Code, Palette, Bike } from "lucide-react";
+import { getAssetPath } from "@/lib/asset-path";
 
 const features = [
   {
@@ -110,7 +111,7 @@ export default function ActivitiesPage() {
                     <div className="phone-mockup relative" style={{ width: 280, height: 570 }}>
                       <div className="absolute inset-0 overflow-hidden rounded-[28px]">
                         <Image
-                          src="/images/screenshots/activities/Active play dates.png"
+                          src={getAssetPath("/images/screenshots/activities/Active play dates.png")}
                           alt="KidZoo Activities - Home Screen"
                           fill
                           className="object-cover"

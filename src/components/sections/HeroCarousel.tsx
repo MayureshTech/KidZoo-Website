@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight, Download } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { getAssetPath } from "@/lib/asset-path";
 
 const slides = [
   {
@@ -230,7 +231,7 @@ export function HeroCarousel() {
                 className="flex justify-center lg:justify-start"
               >
                 <div className="w-16 h-16 rounded-2xl overflow-hidden bg-white shadow-card flex items-center justify-center p-2">
-                  <Image src={slide.logo} alt={slide.name} width={48} height={48} className="object-contain w-full h-full" />
+                  <Image src={getAssetPath(slide.logo)} alt={slide.name} width={48} height={48} className="object-contain w-full h-full" />
                 </div>
 
               </motion.div>
@@ -291,7 +292,7 @@ export function HeroCarousel() {
                 <div className="phone-mockup animate-float" style={{ width: 280, height: 570 }}>
                   <div className="absolute inset-0 overflow-hidden rounded-[28px]">
                     <Image
-                      src={slide.screenshot}
+                      src={getAssetPath(slide.screenshot)}
                       alt={`${slide.name} app`}
                       fill
                       className="object-cover"
