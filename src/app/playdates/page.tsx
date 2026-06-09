@@ -7,7 +7,7 @@ import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { PhoneMockup } from "@/components/shared/PhoneMockup";
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { AppIcon } from "@/components/shared/AppIcon";
-import { placeholderApps } from "@/lib/apps-data";
+import { apps } from "@/lib/apps-data";
 import { motion } from "framer-motion";
 import { getAssetPath } from "@/lib/asset-path";
 import {
@@ -327,7 +327,7 @@ export default function PlaydatesPage() {
           />
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {placeholderApps.slice(0, 4).map((app, index) => (
+            {apps.filter(app => app.id !== "playdates").slice(0, 4).map((app, index) => (
               <ScrollReveal key={app.id} delay={index * 0.1}>
                 <Link href={app.slug} className="group block">
                   <motion.div

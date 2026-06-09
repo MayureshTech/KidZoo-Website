@@ -8,7 +8,7 @@ import { Footer } from "@/components/layout/Footer";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { AppIcon } from "@/components/shared/AppIcon";
-import { placeholderApps } from "@/lib/apps-data";
+import { apps } from "@/lib/apps-data";
 import { getAssetPath } from "@/lib/asset-path";
 import { ArrowRight, Search, MapPin, MessageCircle, Calendar, DollarSign, Star, Cake, Heart, Shield, Clock, Image as ImageIcon } from "lucide-react";
 
@@ -376,7 +376,7 @@ export default function CakesPage() {
             />
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {placeholderApps.slice(0, 4).map((app, index) => (
+              {apps.filter(app => app.id !== "cakes").slice(0, 4).map((app, index) => (
                 <ScrollReveal key={app.id} delay={index * 0.1}>
                   <Link href={app.slug} className="group block">
                     <motion.div
