@@ -222,7 +222,7 @@ export function HeroCarousel() {
 
   return (
     <section
-      className="relative min-h-screen w-full overflow-hidden"
+      className="relative w-full overflow-hidden min-h-[auto] md:min-h-[700px] lg:min-h-[750px]"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -252,7 +252,7 @@ export function HeroCarousel() {
             y: [0, -20, 0],
           }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-20 right-[10%] w-[400px] h-[400px] rounded-full blur-[100px] opacity-40"
+          className="absolute top-10 right-[5%] w-[300px] h-[300px] md:w-[400px] md:h-[400px] rounded-full blur-[80px] md:blur-[100px] opacity-30 md:opacity-40"
           style={{ background: slide.accentColor }}
         />
         <motion.div
@@ -261,13 +261,13 @@ export function HeroCarousel() {
             y: [0, 30, 0],
           }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-          className="absolute bottom-20 left-[5%] w-[300px] h-[300px] rounded-full blur-[80px] opacity-30"
+          className="absolute bottom-10 left-[5%] w-[200px] h-[200px] md:w-[300px] md:h-[300px] rounded-full blur-[60px] md:blur-[80px] opacity-20 md:opacity-30"
           style={{ background: slide.accentColor }}
         />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 flex items-center">
+      <div className="relative z-10 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 md:pt-24 pb-32 md:pb-24 flex items-center">
         <AnimatePresence mode="wait">
           <motion.div
             key={slide.id}
@@ -275,10 +275,10 @@ export function HeroCarousel() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -30 }}
             transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-            className="w-full grid lg:grid-cols-2 gap-12 lg:gap-16 items-center"
+            className="w-full grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center"
           >
             {/* Left: Text */}
-            <div className="flex flex-col gap-6 text-center lg:text-left order-2 lg:order-1">
+            <div className="flex flex-col gap-4 md:gap-6 text-center lg:text-left order-2 lg:order-1">
               {/* App Logo */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -286,7 +286,7 @@ export function HeroCarousel() {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="flex justify-center lg:justify-start"
               >
-                <div className="w-16 h-16 rounded-2xl overflow-hidden bg-white shadow-card flex items-center justify-center p-2">
+                <div className="w-12 h-12 md:w-16 md:h-16 rounded-2xl overflow-hidden bg-white shadow-card flex items-center justify-center p-2">
                   <Image src={getAssetPath(slide.logo)} alt={slide.name} width={48} height={48} className="object-contain w-full h-full" />
                 </div>
 
@@ -297,7 +297,7 @@ export function HeroCarousel() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2 }}
-                className="text-sm font-semibold tracking-[0.15em] uppercase"
+                className="text-xs md:text-sm font-semibold tracking-[0.15em] uppercase"
                 style={{ color: slide.accentColor }}
               >
                 {slide.name}
@@ -308,7 +308,7 @@ export function HeroCarousel() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-[3.5rem] xl:text-[4rem] font-extrabold leading-[1.1] tracking-tight text-gray-900"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-extrabold leading-[1.1] tracking-tight text-gray-900"
                 style={{ fontFamily: "var(--font-plus-jakarta)" }}
               >
                 {slide.tagline}
@@ -319,7 +319,7 @@ export function HeroCarousel() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="text-lg text-gray-600 leading-relaxed max-w-lg mx-auto lg:mx-0"
+                className="text-base md:text-lg text-gray-600 leading-relaxed max-w-lg mx-auto lg:mx-0"
               >
                 {slide.description}
               </motion.p>
@@ -345,21 +345,21 @@ export function HeroCarousel() {
               style={{ perspective: "1000px" }}
             >
               <div className="relative">
-                <div className="phone-mockup animate-float" style={{ width: 280, height: 570 }}>
+                <div className="phone-mockup animate-float" style={{ width: 220, height: 450, maxWidth: '100%' }}>
                   <div className="absolute inset-0 overflow-hidden rounded-[28px]">
                     <Image
                       src={getAssetPath(slide.screenshot)}
                       alt={`${slide.name} app`}
                       fill
                       className="object-cover"
-                      sizes="280px"
+                      sizes="(max-width: 768px) 220px, 280px"
                       priority
                     />
                   </div>
                 </div>
                 {/* Decorative shape */}
                 <div
-                  className="absolute -z-10 -bottom-8 -right-8 w-64 h-64 rounded-full blur-3xl opacity-50"
+                  className="absolute -z-10 -bottom-8 -right-8 w-48 h-48 md:w-64 md:h-64 rounded-full blur-3xl opacity-50"
                   style={{ background: slide.accentLight }}
                 />
               </div>
@@ -369,21 +369,21 @@ export function HeroCarousel() {
       </div>
 
       {/* Navigation */}
-      <div className="absolute bottom-8 left-0 right-0 z-20">
+      <div className="absolute bottom-4 md:bottom-8 left-0 right-0 z-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Arrows */}
-          <div className="flex gap-3">
+          <div className="flex gap-2 md:gap-3">
             <button
               onClick={() => paginate(-1)}
-              className="w-12 h-12 rounded-full bg-white shadow-card flex items-center justify-center hover:shadow-card-hover transition-all hover:-translate-y-0.5 group"
+              className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white shadow-card flex items-center justify-center hover:shadow-card-hover transition-all hover:-translate-y-0.5 group"
             >
-              <ChevronLeft className="w-5 h-5 text-gray-700 group-hover:text-gray-900" />
+              <ChevronLeft className="w-4 h-4 md:w-5 md:h-5 text-gray-700 group-hover:text-gray-900" />
             </button>
             <button
               onClick={() => paginate(1)}
-              className="w-12 h-12 rounded-full bg-white shadow-card flex items-center justify-center hover:shadow-card-hover transition-all hover:-translate-y-0.5 group"
+              className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white shadow-card flex items-center justify-center hover:shadow-card-hover transition-all hover:-translate-y-0.5 group"
             >
-              <ChevronRight className="w-5 h-5 text-gray-700 group-hover:text-gray-900" />
+              <ChevronRight className="w-4 h-4 md:w-5 md:h-5 text-gray-700 group-hover:text-gray-900" />
             </button>
           </div>
 
