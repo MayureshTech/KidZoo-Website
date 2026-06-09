@@ -199,7 +199,7 @@ export function Footer() {
               Terms
             </Link>
             <Link
-              href="#"
+              href="/privacy"
               className="text-sm text-gray-500 hover:text-gray-300 transition-colors"
             >
               Privacy
