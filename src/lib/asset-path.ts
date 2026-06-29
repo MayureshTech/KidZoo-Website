@@ -1,5 +1,5 @@
 // Helper to prefix image paths with basePath for GitHub Pages
-const BASE_PATH = "/KidZoo-Website";
+const BASE_PATH = "";
 
 export function getAssetPath(path: string): string {
   // Avoid double slashes
